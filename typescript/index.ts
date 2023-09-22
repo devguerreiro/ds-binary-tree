@@ -26,6 +26,36 @@ class BinaryTree {
             }
         }
     }
+    preOrderTraversal(node: Node | null = null) {
+        const _node = node === null ? this.root : node;
+        if (_node !== null) {
+            // print root leaf
+            process.stdout.write(_node.value + "->");
+            if (_node.left !== null) {
+                // go to the left
+                this.preOrderTraversal(_node.left);
+            }
+            if (_node.right !== null) {
+                // go to the right
+                this.preOrderTraversal(_node.right);
+            }
+        }
+    }
+    postOrderTraversal(node: Node | null = null) {
+        const _node = node === null ? this.root : node;
+        if (_node !== null) {
+            if (_node.left !== null) {
+                // go to the left
+                this.postOrderTraversal(_node.left);
+            }
+            if (_node.right !== null) {
+                // go to the right
+                this.postOrderTraversal(_node.right);
+            }
+            // print root leaf
+            process.stdout.write(_node.value + "->");
+        }
+    }
 }
 
 export default {};
@@ -54,4 +84,9 @@ two.right = five;
 three.left = six;
 three.right = seven;
 
+console.log("in-order traversal");
 binaryTree.inOrderTraversal();
+console.log("\npre-order traversal");
+binaryTree.preOrderTraversal();
+console.log("\npost-order traversal");
+binaryTree.postOrderTraversal();
