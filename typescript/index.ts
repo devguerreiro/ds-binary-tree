@@ -56,6 +56,23 @@ class BinaryTree {
             process.stdout.write(_node.value + "->");
         }
     }
+    height(node: Node | null = null) {
+        const _node = node === null ? this.root : node;
+        if (_node !== null) {
+            let leftHeight = -1;
+            let rightHeight = -1;
+            if (_node.left !== null) {
+                // go to the left
+                leftHeight = this.height(_node.left) as number;
+            }
+            if (_node.right !== null) {
+                // go to the right
+                rightHeight = this.height(_node.right) as number;
+            }
+            // return root height
+            return Math.max(leftHeight, rightHeight) + 1;
+        }
+    }
 }
 
 export default {};
@@ -90,3 +107,5 @@ console.log("\npre-order traversal");
 binaryTree.preOrderTraversal();
 console.log("\npost-order traversal");
 binaryTree.postOrderTraversal();
+console.log("\nheight");
+console.log(binaryTree.height());
